@@ -21,10 +21,10 @@ with open('summary.csv', 'w') as csv_out:
       #print(magic.from_file("slightlyDiff.jpeg"))
       #md5Hash = hashlib.md5(open("calvinTrexPlane.jpeg", 'rb').read())
       #print(md5Hash.hexdigest())
-      md5Hash = hashlib.md5(open((file),'rb').read())
-      sha256Hash = hashlib.sha256(open((file),'rb').read())
-      sha512Hash = hashlib.sha512(open((file),'rb').read())
-      fuzzyHash = tlsh.hash(open(file, 'rb').read())
-      filetype = magic.from_file(file) #we need to cut this down to just the first word of the output
+      md5Hash = hashlib.md5(open(os.path.join(root,file),'rb').read())
+      sha256Hash = hashlib.sha256(open(os.path.join(root,file),'rb').read())
+      sha512Hash = hashlib.sha512(open(os.path.join(root,file),'rb').read())
+      fuzzyHash = tlsh.hash(open(os.path.join(root,file), 'rb').read())
+      filetype = magic.from_file(os.path.join(root,file)) #we need to cut this down to just the first word of the output
 
       csvwriter.writerow([file, filetype, md5Hash,sha256Hash, sha512Hash, fuzzyHash])
